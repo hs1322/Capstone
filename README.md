@@ -1,4 +1,5 @@
-# Capstone
+# Motion Tracking Robot
+
 주제 : Motion Tracking Robot.
 - 카메라를 이용하여 객체를 검출 -> 여러 동작을 시도 해 볼 예정입니다.
 
