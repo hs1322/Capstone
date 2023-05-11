@@ -18,3 +18,11 @@
 
 # 블록도
 ![image](https://github.com/hs1322/Capstone/assets/90660378/ff0e2e9f-12f4-4870-a775-1f592806a85c)
+
+
+# 진행사항
+
+현재 프레임 미완성 => 손 모양에 따른 메세지 출력
+![image](https://github.com/hs1322/Capstone/assets/90660378/8d1afb02-069a-498d-9e0f-8f96379433ed)
+
+얼굴인식과 Ros node간 통신 진행중
