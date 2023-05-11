@@ -21,6 +21,9 @@
 
 
 # 진행사항
+![image](https://github.com/hs1322/Capstone/assets/90660378/ff2d0525-3d36-456b-91ff-31ae05bf0aa5)
+손가락 랜드마크 번호간 길이를 비교 손가락을 접었는지 폈는지 판단
+ex) 검지 -> 0번~8번 길이가 0번~6번 길이보다 짧으면 접힌 걸로 판단
 
 현재 프레임 미완성 => 손 모양에 따른 메세지 출력
 ![image](https://github.com/hs1322/Capstone/assets/90660378/8d1afb02-069a-498d-9e0f-8f96379433ed)
