@@ -74,5 +74,6 @@ https://github.com/hs1322/Capstone/assets/90660378/996fb51b-f784-437c-acfc-ed2ea
 
 손모양 검출후 손모양에 따른 topic을 Rosserial을 사용하여 arduino와 통신 진행중
 
-# 6. 개선할 점
-# 7. 
+# 6. 문제점
+
+# 7. 개선방향
