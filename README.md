@@ -39,7 +39,9 @@ https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b
 ![image](https://github.com/hs1322/Capstone/assets/90660378/ff2d0525-3d36-456b-91ff-31ae05bf0aa5)
 
 손가락 랜드마크 번호간 길이를 비교 손가락을 접었는지 폈는지 판단
-ex) 검지 -> 0번 ~ 8번 길이가 0번 ~ 6번 길이보다 짧으면 접힌 걸로 판단
+ex) 검지 -> 0번~8번 길이가 0번~6번 길이보다 짧으면 접힌 걸로 판단
+
+코드의 일부분
 ![image](https://github.com/hs1322/Capstone/assets/90660378/f118d931-c088-4b79-9e34-f74e7cda5a39)
 
 학습
