@@ -41,6 +41,7 @@
 
 
 사용자 얼굴의 이미지를 200장을 찍고 학습 후 사용자 외 얼굴은 Locked 사용자 얼굴은 UnLocked한 후 손 모양 검출로 넘어감
+
 https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b0783c48
 
 
