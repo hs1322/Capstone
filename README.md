@@ -19,7 +19,7 @@
 
 
 # 블록도
-![image](https://github.com/hs1322/Capstone/assets/90660378/e843941a-74bb-48a5-99ea-cb58859861ed)
+![image](https://github.com/hs1322/Capstone/assets/90660378/68f28db6-8f0c-4b60-b62d-b70d43eacd5c)
 
 
 # 진행사항
