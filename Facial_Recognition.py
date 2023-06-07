@@ -1,8 +1,7 @@
 import cv2
 import numpy as np
 
-face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-
+face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')  # 1
 
 def face_extractor(img):
 
@@ -21,11 +20,11 @@ def face_extractor(img):
 cap = cv2.VideoCapture(0)
 count = 0
 
-while True:
+while True:                                                                      # 2
     ret, frame = cap.read()
     if face_extractor(frame) is not None:
         count+=1
-        face = cv2.resize(face_extractor(frame),(200,200))
+        face = cv2.resize(face_extractor(frame),(300,300))
         face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
 
         file_name_path = 'faces/user'+str(count)+'.jpg'
@@ -37,7 +36,7 @@ while True:
         print("Face not Found")
         pass
 
-    if cv2.waitKey(1)==13 or count==100:
+    if cv2.waitKey(1)==13 or count==200:
         break
 
 cap.release()
