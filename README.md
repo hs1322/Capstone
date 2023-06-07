@@ -26,11 +26,19 @@
 
 # 사용자 인식
 
-사용자 얼굴의 이미지를 100장을 찍고 학습 후 사용자 외 얼굴은 Locked 사용자 얼굴은 UnLocked한 후 손 모양 검출로 넘어감
+1. OpenCV에서 제공하는 사전 훈련된 Haar cascades의 default.xml 파일을 사용 사용자의 얼굴 부분을 검출
+2. 검출된 사용자의 얼굴을 300 * 300 pixel 사진으로 200장을 faces 폴더 안에 저장
+![image](https://github.com/hs1322/Capstone/assets/90660378/d7f3a851-4eeb-47a8-883c-241b28337679)
+
+3. 저장된 폴더내의 파일들을 가져와 배열의 저장 한 후 LBPH 알고리즘(Local-Binary-Pattern 주변의 값을 2진수로 표현 후 값을 계산)을 사용하여 사용자의 얼굴을 학습
+※ 현재 LBPH알고리즘은 오래되어 인식율 및 성능이 좋지 못함 CNN알고리즘 사용시 얼굴의 주요 특징점을 찾기에 성능이 더 뛰어나고 정확하게 인식함 현 단계에서는 LBPH 알고리즘을 사용
+![image](https://github.com/hs1322/Capstone/assets/90660378/f17f7833-fe30-41f8-99a9-019b610e3c0b)
+
+4. 학습된 이미지 파일을 이용 웹캠을 통하여 실시간으로 사용자의 얼굴을 찾아내어 인식 후 학습된 사용자의 얼굴과 유사 또는 일치 할 시 'Find face' topic을 보냄
+![image](https://github.com/hs1322/Capstone/assets/90660378/516c71e5-3e18-4f69-bde0-4cb3b12fc088)
 
 
-
-
+사용자 얼굴의 이미지를 200장을 찍고 학습 후 사용자 외 얼굴은 Locked 사용자 얼굴은 UnLocked한 후 손 모양 검출로 넘어감
 https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b0783c48
 
 
