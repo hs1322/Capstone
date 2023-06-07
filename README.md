@@ -33,12 +33,12 @@ https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b
 
 
 
-
 손 모양 검출()
 ![image](https://github.com/hs1322/Capstone/assets/90660378/ff2d0525-3d36-456b-91ff-31ae05bf0aa5)
 손가락 랜드마크 번호간 길이를 비교 손가락을 접었는지 폈는지 판단
 ex) 검지 -> 0번 ~ 8번 길이가 0번 ~ 6번 길이보다 짧으면 접힌 걸로 판단
-![image](https://github.com/hs1322/Capstone/assets/90660378/8d1afb02-069a-498d-9e0f-8f96379433ed)
+https://github.com/hs1322/Capstone/assets/90660378/fa611796-2452-46ec-b792-7a7868b9ea0a
+
 
 
 topic에 따른 메카넘 휠 조절
