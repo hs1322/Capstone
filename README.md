@@ -38,11 +38,11 @@
 
 https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b0783c48
 
+※ 사용자 외 다른 사람이 카메라에 들어올 시 영상
+  ![사용자 외 다른사람 이미지](https://github.com/hs1322/Capstone/assets/90660378/92f2ab9b-7792-4588-9a12-279e16e32e29)
+
 4. 학습된 이미지 파일을 이용 웹캠을 통하여 실시간으로 사용자의 얼굴을 찾아내어 인식 후 학습된 사용자의 얼굴과 유사 또는 일치 할 시 손 모양 검출로 넘어감
 ![image](https://github.com/hs1322/Capstone/assets/90660378/516c71e5-3e18-4f69-bde0-4cb3b12fc088)
-
-  ※ 사용자 외 다른 사람이 카메라에 들어올 시 영상
-  ![사용자 외 다른사람 이미지](https://github.com/hs1322/Capstone/assets/90660378/92f2ab9b-7792-4588-9a12-279e16e32e29)
 
 
 # 손 모양 검출
