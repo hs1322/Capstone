@@ -15,7 +15,8 @@
 
 
 # 4. 블록도
-![image](https://github.com/hs1322/Capstone/assets/90660378/68f28db6-8f0c-4b60-b62d-b70d43eacd5c)
+![image](https://github.com/hs1322/Capstone/assets/90660378/e059cd89-c81a-456d-b79e-3f9cc7c3b7d9)
+
 
 
 # 5. 진행사항
