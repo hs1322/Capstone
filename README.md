@@ -10,8 +10,8 @@
 # 3. 목표
 - 작품의 최종 형태는 주행 로봇 위에 카메라를 설치한 작품을 구상 하고 있습니다.
   카메라를 영상을 raspberry pi에서 영상 처리를 통해 간단한 손 모양을 인식,손 모양에 따라 앞, 뒤 양옆으로 주행 로봇을 제어하며 카메라의 거리를 조절.
-  주행 로봇은 rosserial 통신과 메카넘 휠을 사용하여 동작을 원할 하게 수행하며, 
-
+  주행 로봇은 rosserial 통신과 메카넘 휠을 사용하여 동작을 원할 하게 수행. 짐벌을 통한 카메라 흔들림 보정.
+- 최종 목표는 여러 손 동작으로 카메라화면을 제어하는 것을 목표로 하고 있습니다.
 
 
 # 4. 블록도
@@ -52,14 +52,11 @@ ex) 검지-> 0번 ~ 8번 길이가 0번 ~ 6번 길이보다 짧으면 접힌 걸
 코드의 일부분
 ![image](https://github.com/hs1322/Capstone/assets/90660378/f118d931-c088-4b79-9e34-f74e7cda5a39)
 
-학습
-![image](https://github.com/hs1322/Capstone/assets/90660378/a1befcbc-d1e8-4dfc-8a9b-e01adbadcb3e)
-
 https://github.com/hs1322/Capstone/assets/90660378/fa611796-2452-46ec-b792-7a7868b9ea0a
 
 
 
-# topic에 따른 메카넘 휠 조절
+# topic에 따른 주행로봇 메카넘 휠 조절
 go, back, left, right 4방향에 대한 바퀴 모터수 조절
 
 
