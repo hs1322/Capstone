@@ -40,13 +40,15 @@
 5. 사용자의 얼굴 확인 시 카메라에 원본 영상과 함께 다른 불필요한 양 옆 화면을 흰색 배경으로 제거하여 사용자의 얼굴과 손 모양을 확인 할 수 있도록 사용자의 얼굴과 배경을 잡음
 ![사용자 얼굴, 손](https://github.com/hs1322/Capstone/assets/90660378/5b94c3ec-359a-4622-9c21-44230aa945e6)
 
+  ※ 코드의 일부분
+  ![코드](https://github.com/hs1322/Capstone/assets/90660378/264d579c-139b-482c-be58-2e6f6a06f4a7)
+
   ※ 사용자 외 다른 사람이 카메라에 들어올 시 영상
+  ![사용자 외 다른사람 이미지](https://github.com/hs1322/Capstone/assets/90660378/92f2ab9b-7792-4588-9a12-279e16e32e29)
+
   
-
 사용자 얼굴의 이미지를 500장을 찍고 학습 후 사용자 외 얼굴은 Locked 사용자 얼굴은 UnLocked한 후 손 모양 검출로 넘어감
-
 https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b0783c48
-
 
 
 # 손 모양 검출
@@ -57,7 +59,6 @@ https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b
 ex) 검지-> 0번 ~ 8번 길이가 0번 ~ 6번 길이보다 짧으면 접힌 걸로 판단
 
 손가락을 접었을 경우 False 핀 경우 True
-
 
 코드의 일부분
 ![image](https://github.com/hs1322/Capstone/assets/90660378/f118d931-c088-4b79-9e34-f74e7cda5a39)
@@ -74,7 +75,6 @@ go, back, left, right 4방향에 대한 바퀴 모터수 조절
 
 
 https://github.com/hs1322/Capstone/assets/90660378/996fb51b-f784-437c-acfc-ed2ea7d1b622
-
 
 
 
