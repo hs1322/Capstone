@@ -59,6 +59,7 @@ https://github.com/hs1322/Capstone/assets/90660378/fa611796-2452-46ec-b792-7a786
 # topic에 따른 주행로봇 메카넘 휠 조절
 go, back, left, right 4방향에 대한 바퀴 모터수 조절
 
+![image](https://github.com/hs1322/Capstone/assets/90660378/26a4280d-9111-493a-89ec-4711124e0d12)
 
 
 https://github.com/hs1322/Capstone/assets/90660378/996fb51b-f784-437c-acfc-ed2ea7d1b622
