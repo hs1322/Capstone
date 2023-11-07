@@ -73,4 +73,6 @@ https://github.com/hs1322/Capstone/assets/90660378/996fb51b-f784-437c-acfc-ed2ea
  - 
  - 
 # 7. 개선방향
- - 동작
+ - 라즈베리파이의 상대적으로 낮은 GPU성능으로 인한 프레임수 저하
+ - => Edge TPU를 제공하는 Coral USB Accelerator(USB가속기)를 사용 => 객체인식 부분 대신처리
+ - => 촬영용 카메라 분리
