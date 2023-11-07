@@ -50,6 +50,8 @@ https://github.com/hs1322/Capstone/assets/90660378/070a5d86-6c68-4acd-9370-2651b
 ex) 검지-> 0번 ~ 8번 길이가 0번 ~ 6번 길이보다 짧으면 접힌 걸로 판단
 
 손가락을 접었을 경우 False 핀 경우 True
+
+
 코드의 일부분
 ![image](https://github.com/hs1322/Capstone/assets/90660378/f118d931-c088-4b79-9e34-f74e7cda5a39)
 
