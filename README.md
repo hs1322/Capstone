@@ -54,6 +54,7 @@ ex) 검지-> 0번 ~ 8번 길이가 0번 ~ 6번 길이보다 짧으면 접힌 걸
 
 https://github.com/hs1322/Capstone/assets/90660378/fa611796-2452-46ec-b792-7a7868b9ea0a
 
+검출 된 손 모양에 따라 rosserial을통해 topic 메세지 전달. 
 
 
 # topic에 따른 주행로봇 메카넘 휠 조절
