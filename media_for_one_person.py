@@ -125,7 +125,7 @@ while True:                                                     # 4
 
     # findface="Find Face!"
 
-    # 카메라의 사용자의 얼굴을 검출하여 검출된 얼굴을 학습된 데이터를 통해 비교하여 사용자를 식별
+    # 카메라의 사용자의 얼굴을 검출하여 검출된 얼굴을 학습된 데이터를 통해 비교하여 사용자를 식별 정확도가 높은 dlib 라이브러리 재사용 이는 사용자의 빠른 인식이 아닌 정확도의 초점
     image, face = face_detector(frame)
     try:
         face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
