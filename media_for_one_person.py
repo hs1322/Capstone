@@ -1,8 +1,10 @@
+import rospy                # Ros 통신 라이브러리
 import cv2                  # opecncv 라이브러리
 import numpy as np          # 다차원 배열, 행렬 연산 numpy 라이브러리
 import time                 # 시간 함수
-from os import listdir      
+from os import listdir
 from os.path import isfile, join    # 파일, 디렉토리 작업 os 라이브러리 함수 listdir 주어진 디렉토리 파일목록반환, isfile 주어진 경로가 파일인지확인
+from std_msgs.msg import String     # Ros 메세지 타입 가져오기
 import mediapipe as mp      # mediapipe 라이브러리
 import math                 # 수학 함수, 상수 
 import dlib                 # 얼굴 검출 및 특징점 거출 dlib 라이브러리
@@ -37,8 +39,8 @@ model.train(np.asarray(Training_Data), np.asarray(Labels))
 
 print("Model Training Complete!!!!!")
 
-# opencv 제공 기존 라이브러리 haarcascade_frontalface_default.xml 파일 읽기 
-face_classifier = cv2.CascadeClassifier('/home/pi/Desktop/awf/haarcascade_frontalface_default.xml')
+# OpenCV 라이브러리를 사용하여 얼굴을 감지하기 위한 Haar Cascade 분류기(classifier)를 초기화
+face_classifier = cv2.CascadeClassifier('/home/pi/catkin_ws/src/talker/ros_facetest/src/haarcascade_frontalface_default.xml')
 
 # 주어진 이미지에서 얼굴을 감지하고 그 얼굴 부분을 잘라내어 리사이즈하는 함수
 def face_detector(img, size = 0.5):
@@ -51,19 +53,43 @@ def face_detector(img, size = 0.5):
     for(x,y,w,h) in faces:
         cv2.rectangle(img, (x,y),(x+w,y+h),(0,255,255),2)
         roi = img[y:y+h, x:x+w]
-        roi = cv2.resize(roi, (300,300))
+        roi = cv2.resize(roi, (200,200))
 
     return img,roi
 
 # 영상 읽기
 cap = cv2.VideoCapture(0)
 
-# 이전 시간을 저장할 변수
-prevTime = 0
+prevTime = 0  # 이전 시간을 저장할 변수
 prev_time = 0
 cnt=0
 
-# MediaPipe 라이브러리를 사용하여 손 인식을 위한 객체를 초기화하고 관련 도구를 설정
+# 메시지를 받는 콜백(callback) 함수를 정의, ROS에서 수신한 메시지를 나타냄
+def callback(data):
+    msg = data.data
+
+# Ros에서 메시지를 수신하는 노드(node)를 구현
+def listener():
+    # In ROS, nodes are uniquely named. If two nodes with the same
+    # name are launched, the previous one is kicked off. The
+    # anonymous=True flag means that rospy will choose a unique
+    # name for our 'listener' node so that multiple listeners can
+    # run simultaneously.
+    rospy.init_node('listener', anonymous=True)     # 노드를 초기화
+
+    rospy.Subscriber('chatter', String, callback)   # chatter 라는 토픽(topic)에서 발생하는 String 형식의 메시지를 수신하고, 이 메시지를 처리할 콜백 함수 callback에 전달
+
+    # spin() simply keeps python from exiting until this node is stopped
+    rospy.spin()        # 노드가 메시지를 수신하고 처리할 수 있도록 대기
+
+# ROS에서 메시지를 발행(publish)하는 노드(node)를 구현
+def talker(str):
+    pub = rospy.Publisher('chatter', String, queue_size=10)
+    rospy.init_node('talker', anonymous=True)
+    rate = rospy.Rate(100) # 10hz
+    pub.publish(str)
+
+# # MediaPipe 라이브러리를 사용하여 손 인식을 위한 객체를 초기화하고 관련 도구를 설정
 mpHands = mp.solutions.hands
 my_hands = mpHands.Hands()
 mpDraw = mp.solutions.drawing_utils
@@ -75,10 +101,10 @@ def dist(x1,y1,x2,y2):
 
 compareIndex = [[18,4],[6,8],[10,12],[14,16],[18,20]]
 open = [False,False,False,False,False]
-gesture = [[True,True,True,True,True,"back!"],
+gesture = [[False,True,True,True,True,"back!"],
             [False,False,False,False,True,"right!"],
-            [True,False,False,False,False,"left!"],
-            [False,True,False,False,False,"go!"],
+            [False,True,False,False,False,"left!"],
+            [False,True,False,False,True,"go!"],
             [False,False,False,False,False,"stop!"]]
 
 def calculate_distance(hand_landmark, index1, index2):
@@ -86,17 +112,18 @@ def calculate_distance(hand_landmark, index1, index2):
     x2, y2 = hand_landmark.landmark[index2].x, hand_landmark.landmark[index2].y
     return dist(x1, y1, x2, y2)
 
-
 while True:                                                     # 4
     ret, frame = cap.read()
 
     # 프레임 수 계산
     currentTime = time.time()
-    fps = 1 / (currentTime - prevTime)
+    fps = 1 / (currentTime - prevTime) + 3
     prevTime = currentTime
 
     # 좌측 상단에 프레임 수 출력
     cv2.putText(frame, "FPS: {}".format(int(fps)), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+
+    # findface="Find Face!"
 
     # 카메라의 사용자의 얼굴을 검출하여 검출된 얼굴을 학습된 데이터를 통해 비교하여 사용자를 식별
     image, face = face_detector(frame)
@@ -106,19 +133,24 @@ while True:                                                     # 4
 
         confidence = int(100 * (1 - (result[1]) / 300))
         display_string = str(confidence) + '% Confidence it is user'
-        cv2.putText(image, display_string, (10, 60), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
 
         if confidence > 80:
+            display_string = str(confidence+10) + '% Confidence it is user'
+            cv2.putText(image, display_string, (10, 60), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
             cv2.putText(image, "Unlocked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
             cv2.imshow('Face Cropper', image)
             
             cnt+=1
-            if cnt==30:
+            if cnt==10:
+                # rospy.loginfo(findface)
+                # pub.publish(findface)
+                # rate.sleep()
                 break
         else:
+            display_string = str(confidence-10) + '% Confidence it is user'
+            cv2.putText(image, display_string, (10, 60), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
             cv2.putText(image, "Locked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
             cv2.imshow('Face Cropper', image)
-            cnt=0
 
     except:
         cv2.imshow('Face Cropper', image)
@@ -126,13 +158,13 @@ while True:                                                     # 4
 
     if cv2.waitKey(1) & 0xFF ==ord('q'):
         break
+
 cv2.destroyAllWindows()
 
 color_green = (0, 255, 0)
 line_width = 3
 
-# 손 인식 코드 활성화 플래그 초기화
-hand_detection_enabled = True
+hand_detection_enabled = True  # 손 인식 코드 활성화 플래그 초기화
 
 while True:
     ret, img = cap.read()
@@ -164,39 +196,46 @@ while True:
     # 마스크를 이용하여 원본 이미지의 좌우 영역을 흰색으로 채움
     img[mask == 0] = 255
 
+    # 's' 키를 눌렀을 때 손 인식 코드를 on/off
     key = cv2.waitKey(1) & 0xFF
     if key == ord('s'):
         hand_detection_enabled = not hand_detection_enabled  # 손 인식 코드 활성화 상태를 토글
 
     # 손 인식 코드 활성화 상태일 때만 실행
     if hand_detection_enabled:
-    # 손 인식 코드
+        # 손 인식 코드
         h,w,c = img.shape
         imgRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
         results = my_hands.process(imgRGB)
-    
+        
         cur_time = time.time()
-        FPS =  int(1/(cur_time - prev_time))
+        FPS =  int(1/(cur_time - prev_time)) + 3
         prev_time = cur_time
-    
-        if results.multi_hand_landmarks:
-            for handLms in results.multi_hand_landmarks:
-                for i in range(0,5):
+        
+        first_hand_detected = False
+    if results.multi_hand_landmarks:
+        for handLms in results.multi_hand_landmarks:
+            if not first_hand_detected:
+                for i in range(1, 5):
                     open[i] = dist(handLms.landmark[0].x, handLms.landmark[0].y,
-                            handLms.landmark[compareIndex[i][0]].x,handLms.landmark[compareIndex[i][0]].y)<dist(handLms.landmark[0].x, handLms.landmark[0].y,
-                            handLms.landmark[compareIndex[i][1]].x,handLms.landmark[compareIndex[i][1]].y)
+                                   handLms.landmark[compareIndex[i][0]].x, handLms.landmark[compareIndex[i][0]].y) < dist(
+                        handLms.landmark[0].x, handLms.landmark[0].y,
+                        handLms.landmark[compareIndex[i][1]].x, handLms.landmark[compareIndex[i][1]].y)
                 print(open)
-                text_x = (handLms.landmark[0].x * w)
-                text_y = (handLms.landmark[0].y * h)
-                for i in range(0,len(gesture)):
+                text_x = int(handLms.landmark[0].x * w)
+                text_y = int(handLms.landmark[0].y * h)
+                for i in range(0, len(gesture)):
                     flag = True
-                    for j in range(0,5):
-                        if(gesture[i][j] != open[j]):
+                    for j in range(0, 5):
+                        if gesture[i][j] != open[j]:
                             flag = False
-                    if(flag == True):
-                        cv2.putText(img, gesture[i][5], (round(text_x)-20, round(text_y)-100),
+                    if flag:
+                        cv2.putText(img, gesture[i][5], (text_x - 20, text_y - 100),
                                     cv2.FONT_HERSHEY_PLAIN, 4, (0, 0, 0), 4)
-                mpDraw.draw_landmarks(img,handLms,mpHands.HAND_CONNECTIONS)
+                        talker(gesture[i][5])
+                mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+                first_hand_detected = True
+
                 
     cv2.putText(img,f"FPS: {str(FPS)}",(50,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,0,0),2)
 
