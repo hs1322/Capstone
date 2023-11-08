@@ -71,7 +71,8 @@ go, back, left, right 4방향에 대한 바퀴 모터수 조절
 
 https://github.com/hs1322/Capstone/assets/90660378/996fb51b-f784-437c-acfc-ed2ea7d1b622
 
-
+# 발표영상
+https://www.youtube.com/watch?v=o3fFhPo6wcY
 
 # 6. 문제점
  - 라즈베리파이의 상대적으로 낮은 GPU성능으로 인한 프레임수 저하
