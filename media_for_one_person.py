@@ -16,7 +16,7 @@ detector = dlib.get_frontal_face_detector()
 # mediapipe, 손을 감지하는 모델 객체를 초기화
 hands_detector = mp.solutions.hands.Hands()
 
-# 주어진 디렉토리에서 파일 목록을 가져옴 해당 디렉토리에 있는 파일 중 팡일만을 리스트로 추출
+# 주어진 디렉토리에서 파일 목록을 가져옴 해당 디렉토리에 있는 파일 중 파일만을 리스트로 추출
 data_path = '/home/pi/catkin_ws/src/talker/ros_facetest/src/faces/'
 onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path,f))]
 
