@@ -20,7 +20,7 @@ hands_detector = mp.solutions.hands.Hands()
 data_path = '/home/pi/catkin_ws/src/talker/ros_facetest/src/faces/'
 onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path,f))]
 
-# 학습 데이터 배열# 학습 데이터 배열
+# 학습 데이터 배열
 Training_Data, Labels = [], []
 
 # 디렉토리에서 이미지 파일을 읽어와서 OpenCV를 사용하여 흑백 이미지로 변환한 후 학습 데이터로 사용할 수 있게 배열에 저장하는 작업을 수행
